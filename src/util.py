@@ -28,6 +28,19 @@ def img_rgb_to_cinza(matrix_img_rgb: np.array) -> np.array:
     return matrix_gray_rgb
 
 
+def img_rgb_to_cinza_1_canal(matrix_img_rgb: np.array) -> np.array:
+
+    matrix_cinza = np.zeros(matrix_img_rgb[:, :, 0].shape, dtype=int)
+
+    for i in range(matrix_cinza.shape[0]):
+        for j in range(matrix_cinza.shape[1]):
+            matrix_cinza[i, j] = int((int(matrix_img_rgb[i, j, 0]) +
+                                      int(matrix_img_rgb[i, j, 1]) +
+                                      int(matrix_img_rgb[i, j, 2])) / 3.0)
+
+    return matrix_cinza
+
+
 def calc_histograma(matrix_cinza: np.array) -> np.array:
     histograma = np.zeros(256, dtype=int)
     for i in range(matrix_cinza.shape[0]):
